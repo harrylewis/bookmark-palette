@@ -20,10 +20,6 @@ A keyboard-driven command palette for Chrome bookmarks. Fuzzy-search your bookma
 
 ## Installation
 
-### From the Chrome Web Store
-
-Search for **Bookmark Palette** in the [Chrome Web Store](https://chrome.google.com/webstore) and click **Add to Chrome**.
-
 ### Manual installation (developer mode)
 
 1. Download the latest release zip from the [Releases](../../releases) page and unzip it, or clone this repository.
