@@ -1,0 +1,66 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Palette",
+  "version": "1.0.0",
+  "description": "A command palette for bookmarks — fuzzy search folders and open them as tab groups.",
+
+  "permissions": [
+    "bookmarks",
+    "tabs",
+    "tabGroups"
+  ],
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+
+  "action": {
+    "default_title": "Bookmark Palette",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+
+  "commands": {
+    "open-palette": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K",
+        "mac": "Command+Shift+K"
+      },
+      "description": "Open Bookmark Palette"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "palette.html",
+        "palette.css",
+        "palette.js",
+        "fuzzy.js",
+        "fonts/dm-sans-latin-300-normal.woff2",
+        "fonts/dm-sans-latin-400-normal.woff2",
+        "fonts/dm-sans-latin-500-normal.woff2",
+        "fonts/roboto-mono-latin-400-normal.woff2"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

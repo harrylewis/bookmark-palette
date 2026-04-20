@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookmark Palette</title>
+  <link rel="stylesheet" href="palette.css" />
+</head>
+<body>
+  <div class="palette-wrapper">
+    <div class="palette">
+
+      <div class="search-row">
+        <svg class="search-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M13 13L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search bookmark folders…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <span id="result-count" class="result-count"></span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="results-wrapper">
+        <p id="status" class="status">Loading…</p>
+        <ul id="results-list" class="results-list"></ul>
+      </div>
+
+      <div class="footer">
+        <span class="hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span class="hint"><kbd>↵</kbd> open as tab group</span>
+        <span class="hint"><kbd>esc</kbd> close</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="fuzzy.js"></script>
+  <script src="palette.js"></script>
+</body>
+</html>
