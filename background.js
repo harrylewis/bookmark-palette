@@ -1,20 +1,28 @@
 // background.js — service worker
 
+async function togglePaletteOnTab(tabId) {
+  try {
+    await chrome.tabs.sendMessage(tabId, { type: "TOGGLE_PALETTE" });
+  } catch {
+    // Content script not yet injected — try to inject it now
+    try {
+      await chrome.scripting.executeScript({ target: { tabId }, files: ["content.js"] });
+      await chrome.tabs.sendMessage(tabId, { type: "TOGGLE_PALETTE" });
+    } catch {
+      // Restricted page (e.g. chrome://) — nothing to do
+    }
+  }
+}
+
 chrome.commands.onCommand.addListener(async (command) => {
   if (command === "open-palette") {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if (tab?.id) {
-      chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_PALETTE" }).catch(() => {
-        // Content script not available on this page (e.g. chrome:// URLs) — nothing to do
-      });
-    }
+    if (tab?.id) togglePaletteOnTab(tab.id);
   }
 });
 
-chrome.action.onClicked.addListener(async (tab) => {
-  if (tab?.id) {
-    chrome.tabs.sendMessage(tab.id, { type: "TOGGLE_PALETTE" }).catch(() => {});
-  }
+chrome.action.onClicked.addListener((tab) => {
+  if (tab?.id) togglePaletteOnTab(tab.id);
 });
 
 // Listen for messages from content script

@@ -1,7 +1,9 @@
-// content.js — injected into every page
+// content.js — injected on demand via activeTab + scripting
 // Renders the palette as an in-page overlay (iframe) for snappier UX
 
 (function () {
+  if (window.__bookmarkPaletteLoaded) return;
+  window.__bookmarkPaletteLoaded = true;
   let overlay = null;
   let iframe = null;
   let isOpen = false;

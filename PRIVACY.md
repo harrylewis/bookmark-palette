@@ -19,6 +19,14 @@ Your bookmarks are read locally and never leave your device.
 **Tab Groups** — to group the opened tabs together and assign them a name
 and colour.
 
+**Active Tab** — to inject the palette UI into the current tab when you
+trigger the extension via keyboard shortcut or toolbar button. Access is
+granted only at the moment of invocation and does not persist.
+
+**Scripting** — required to programmatically inject the palette UI into the
+active tab on demand. No scripts are injected without an explicit user
+action.
+
 ## Data storage
 
 The extension stores nothing. No browsing history, no bookmark data, no usage
